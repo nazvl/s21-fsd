@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <RouterView/>
+SDA
 </template>
 
 <style scoped>
