@@ -1,10 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '@/Pages/LoginView.vue'
 import {useAuthStore} from "@/Features/auth/model/loginStore.ts";
+import ProfileView from "@/Pages/ProfileView.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
+        {
+            path: '/',
+            name: 'profile',
+            component: ProfileView,
+        },
         {
             path: '/login',
             name: 'login',

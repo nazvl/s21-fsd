@@ -40,7 +40,9 @@ export const useAuthStore = defineStore('auth', () => {
             if(response.ok) {
                 const token = await response.json();
                 localStorage.setItem('token', JSON.stringify(token));
-                await router.push('/');
+                localStorage.setItem('peerName', loginData.value.login);
+                debugger;
+                await router.push({name: 'profile', params: {}});
             }
 
             console.log(response)
