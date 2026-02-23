@@ -9,12 +9,16 @@ import {useLoaderStore} from "@/Shared/loader/model/loaderStore.ts";
 
 export const useUserStore = defineStore("UserStore", () => {
     const data = ref<User>({} as User)
+    const points = ref<Record<string, number>>({} as Record<string, number>)
+    const feedback = ref<Record<string, number>>({} as Record<string, number>)
     const loader = useLoaderStore();
     // const authStore = useAuthStore()
     async function getData(userName = localStorage.getItem("peerName")) {
         loader.show()
         try {
-            data.value = await fetchData(`/participants/${userName}`,)
+            data.value = await fetchData(`/participants/${userName}`)
+            points.value = await fetchData(`/participants/${userName}/points`)
+            feedback.value = await fetchData(`/participants/${userName}/feedback`)
         } catch (error) {
             console.error(error)
         } finally {
@@ -22,6 +26,6 @@ export const useUserStore = defineStore("UserStore", () => {
         }
     }
     return {
-        data, getData
+        data, getData, points, feedback
     }
 })
