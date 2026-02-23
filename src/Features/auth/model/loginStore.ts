@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 import {ref} from "vue";
 import router from "@/App/router.ts";
-import {useLoaderStore} from "@/Widgets/loader/model/loaderStore.ts";
+import {useLoaderStore} from "@/Shared/loader/model/loaderStore.ts";
 interface LoginData {
     login: string;
     password: string;

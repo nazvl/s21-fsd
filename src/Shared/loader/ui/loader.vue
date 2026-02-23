@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {useLoaderStore} from "@/Widgets/loader/model/loaderStore.ts";
+import {useLoaderStore} from "@/Shared/loader/model/loaderStore.ts";
 
 const store = useLoaderStore()
 </script>

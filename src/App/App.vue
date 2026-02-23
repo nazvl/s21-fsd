@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import Loader from "@/Widgets/loader/ui/loader.vue";
+import Loader from "@/Shared/loader/ui/loader.vue";
 </script>
 
 <template>
