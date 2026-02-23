@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Login from "@/Features/auth/ui/login.vue";
+import {Button} from "primevue";
 </script>
 
 <template>
-<login/>
+<Button></Button>
 </template>
 
 <style scoped>
