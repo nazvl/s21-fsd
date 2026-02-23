@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import router from "@/App/router.ts";
 import {useLoaderStore} from "@/Shared/loader/model/loaderStore.ts";
 interface LoginData {
@@ -16,7 +16,12 @@ export const useAuthStore = defineStore('auth', () => {
         }
     );
     const loader = useLoaderStore()
-    const token = ref<string | null>(null);
+    const token = computed(() => {
+        const tokenStr = localStorage.getItem('token');
+        if (!tokenStr) return null;
+        return JSON.parse(tokenStr);
+    });
+
     const authServer = import.meta.env.VITE_AUTH_SERVER;
     async function auth() {
         loader.show()
@@ -33,10 +38,9 @@ export const useAuthStore = defineStore('auth', () => {
                 },
             })
             if(response.ok) {
-                token.value = await response.json();
-                if(token.value) {
-                    await router.push('/');
-                }
+                const token = await response.json();
+                localStorage.setItem('token', JSON.stringify(token));
+                await router.push('/');
             }
 
             console.log(response)
