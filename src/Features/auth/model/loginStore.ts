@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 
 import {ref} from "vue";
+import router from "@/App/router.ts";
 interface LoginData {
     login: string;
     password: string;
@@ -14,7 +15,7 @@ export const useAuthStore = defineStore('auth', () => {
         }
     );
     const token = ref<string | null>(null);
-    const authServer = 'http://localhost:3000/auth'
+    const authServer = import.meta.env.VITE_AUTH_SERVER;
     async function auth() {
         const data = new URLSearchParams({
             login: loginData.value.login,
@@ -28,8 +29,13 @@ export const useAuthStore = defineStore('auth', () => {
                     "Content-Type": "application/x-www-form-urlencoded",
                 },
             })
+            if(response.ok) {
+                token.value = await response.json();
+                if(token.value) {
+                    await router.push('/');
+                }
+            }
 
-            token.value = await response.json();
             console.log(response)
         } catch (error) {
             console.log(error);
@@ -39,6 +45,6 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     return {
-        loginData, auth
+        loginData, auth, token
     }
 })
