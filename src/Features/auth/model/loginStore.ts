@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 
 import {ref} from "vue";
 import router from "@/App/router.ts";
+import {useLoaderStore} from "@/Widgets/loader/model/loaderStore.ts";
 interface LoginData {
     login: string;
     password: string;
@@ -14,9 +15,11 @@ export const useAuthStore = defineStore('auth', () => {
             password: ''
         }
     );
+    const loader = useLoaderStore()
     const token = ref<string | null>(null);
     const authServer = import.meta.env.VITE_AUTH_SERVER;
     async function auth() {
+        loader.show()
         const data = new URLSearchParams({
             login: loginData.value.login,
             password: loginData.value.password,
@@ -40,7 +43,7 @@ export const useAuthStore = defineStore('auth', () => {
         } catch (error) {
             console.log(error);
         } finally {
-            // TODO: включение/отключение лоадера
+            loader.hide();
         }
     }
 
