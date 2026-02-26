@@ -14,7 +14,7 @@ export const useUserStore = defineStore("UserStore", () => {
     const loader = useLoaderStore();
     // const authStore = useAuthStore()
     async function getData(userName = localStorage.getItem("peerName")) {
-        loader.show()
+        if(!data) loader.show()
         try {
             data.value = await fetchData(`/participants/${userName}`)
             points.value = await fetchData(`/participants/${userName}/points`)
@@ -22,7 +22,7 @@ export const useUserStore = defineStore("UserStore", () => {
         } catch (error) {
             console.error(error)
         } finally {
-            loader.hide()
+            if(!data) loader.hide()
         }
     }
     return {
