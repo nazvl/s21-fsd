@@ -44,7 +44,7 @@ onMounted(async () => {
         </div>
       </div>
       <div class="flex justify-center">
-        <Location></Location> <p>{{ store.data.campus.shortName}}</p>
+        <Location></Location> <p>{{ store.data.campus?.shortName}}</p>
 
       </div>
     </div>
