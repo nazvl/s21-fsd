@@ -21,7 +21,11 @@ export const useAuthStore = defineStore('auth', () => {
         if (!tokenStr) return null;
         return JSON.parse(tokenStr);
     });
-
+    const logout = () => {
+        localStorage.removeItem('token');
+        loginData.value = {login: '', password: ''};
+        router.push('/login');
+    }
     const authServer = import.meta.env.VITE_AUTH_SERVER;
     async function auth() {
         loader.show()
@@ -54,6 +58,6 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     return {
-        loginData, auth, token
+        loginData, auth, token, logout
     }
 })
