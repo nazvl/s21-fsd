@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {ref} from "vue";
+import {computed, type ComputedRef, ref} from "vue";
 // import {useAuthStore} from "@/Features/auth/model/loginStore.ts";
 import {fetchData} from "@/Shared/api.ts";
 import type {User} from "@/Entities/Profile/model/userTypes.ts";
@@ -12,8 +12,12 @@ export const useUserStore = defineStore("UserStore", () => {
     const points = ref<Record<string, number>>({} as Record<string, number>)
     const feedback = ref<Record<string, number>>({} as Record<string, number>)
     const loader = useLoaderStore()
+    const currentUser = computed( () => {
+        const name = localStorage.getItem('peerName')
+        return name ? name : 'shootspi'
+    })
     // const authStore = useAuthStore()
-    async function getData(userName = localStorage.getItem("peerName")) {
+    async function getData(userName = currentUser.value) {
         loader.show()
         try {
             data.value = await fetchData(`/participants/${userName}`)
@@ -26,6 +30,6 @@ export const useUserStore = defineStore("UserStore", () => {
         }
     }
     return {
-        data, getData, points, feedback
+        data, getData, points, feedback, currentUser
     }
 })

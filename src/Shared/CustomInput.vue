@@ -7,6 +7,7 @@ interface Props {
   type?: 'text' | 'password' | 'email' | 'number'
   label?: string
   style?: string
+  placeholder?: string
 }
 
 const props = withDefaults(
@@ -22,6 +23,7 @@ const props = withDefaults(
   <div class="flex flex-col">
     <label v-if="props.label" class="text-xs text-gray-400">{{ props.label }}</label>
     <InputText
+        :placeholder="props.placeholder"
         v-model="model"
         :type="props.type"
     />
