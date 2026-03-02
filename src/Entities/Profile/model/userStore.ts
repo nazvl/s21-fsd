@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {computed, type ComputedRef, ref} from "vue";
+import {computed, ref} from "vue";
 // import {useAuthStore} from "@/Features/auth/model/loginStore.ts";
 import {fetchData} from "@/Shared/api.ts";
 import type {User} from "@/Entities/Profile/model/userTypes.ts";
