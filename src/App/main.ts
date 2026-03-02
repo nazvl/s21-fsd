@@ -6,6 +6,7 @@ import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
 import { createPinia } from 'pinia'
 import {socket} from "@/App/webSocket.ts";
+import {useUserStore} from "@/Entities/Profile/model/userStore.ts";
 
 // const ws = new WebSocket('wss://platform.21-school.ru/s21/connection/websocket');
 
@@ -21,5 +22,12 @@ app.use(PrimeVue, {
 app.mount('#app');
 
 socket.onopen = () => {
-    console.log('Websocket connection opened');
-}
+    const userStore = useUserStore()
+    console.log('Соединение установлено');
+    socket.send(JSON.stringify({
+        connected: {
+            login: userStore.currentUser ? userStore.currentUser : null,
+            campus: userStore.data?.campus?.shortName,
+        }
+    }));
+};
