@@ -14,7 +14,7 @@ function handleCampusClick() {
 </script>
 
 <template>
-  <div v-for="campus in campusStore.campusList">
+  <div v-for="campus in campusStore.campusList" :key="campus.id">
     <Campus :id="campus.id" :short-name="campus.shortName" :full-name="campus.fullName" @click="handleCampusClick"/>
   </div>
 
