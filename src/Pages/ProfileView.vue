@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import UserProfile from "@/Widgets/profile/ui/UserProfile.vue";
+import UserProfile from "@/Widgets/Profile/ui/UserProfile.vue";
 import CustomButton from "@/Shared/CustomButton.vue";
 import {useAuthStore} from "@/Features/auth/model/loginStore.ts";
 const store = useAuthStore()

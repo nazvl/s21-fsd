@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {useUserStore} from "@/Widgets/profile/model/userStore.ts";
+import {useUserStore} from "@/Widgets/Profile/model/userStore.ts";
 import {onMounted} from "vue";
-import Avatar from "@/Widgets/profile/ui/Avatar.vue";
+import Avatar from "@/Widgets/Profile/ui/Avatar.vue";
 import CustomProgressBar from "@/Shared/CustomProgressBar.vue";
 import Location from "vue-material-design-icons/Map.vue"
 const store = useUserStore();

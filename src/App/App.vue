@@ -2,6 +2,9 @@
 import Loader from "@/Shared/loader/ui/loader.vue";
 import Header from "@/Widgets/Header/ui/Header.vue";
 import Footer from "@/Widgets/Footer/ui/Footer.vue";
+import {useRoute} from "vue-router";
+const route = useRoute();
+
 </script>
 
 <template>
@@ -10,7 +13,7 @@ import Footer from "@/Widgets/Footer/ui/Footer.vue";
     <RouterView/>
   </div>
   <loader/>
-  <Footer/>
+  <Footer v-if="route.name !== 'login'"/>
 </template>
 
 <style scoped>
