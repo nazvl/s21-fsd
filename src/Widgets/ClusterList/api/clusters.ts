@@ -4,6 +4,8 @@ import {useUserStore} from "@/Widgets/Profile/model/userStore.ts";
 
 // @ts-ignore
 export async function fetchClusters(campus: string = null): Promise<Cluster[]> {
+    const userStore = useUserStore();
+    await userStore.getData()
     if(!campus) campus = useUserStore().data.campus.id
     try {
         const res = await fetchData(`/campuses/${campus}/clusters`);

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import Cluster from "@/Entities/Cluster/ui/Cluster.vue";
-import {useClustersStore} from "@/Widgets/Clusters/model/ClustersStore.ts";
+import {useClustersStore} from "@/Widgets/ClusterList/model/ClustersStore.ts";
 import {onMounted} from "vue";
 
 const clustersStore = useClustersStore()

@@ -1,7 +1,7 @@
 import {defineStore} from "pinia";
 import type { Cluster} from "@/Entities/Cluster/model/ClusterTypes.ts";
 import {ref} from "vue";
-import {fetchClusters} from "@/Widgets/Clusters/api/clusters.ts";
+import {fetchClusters} from "@/Widgets/ClusterList/api/clusters.ts";
 import {useLoaderStore} from "@/Shared/loader/model/loaderStore.ts";
 
 
