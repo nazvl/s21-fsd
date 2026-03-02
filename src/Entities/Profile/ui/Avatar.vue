@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import Avatar from "@/Widgets/Profile/ui/avatar.png";
+import Avatar from "@/Entities/Profile/ui/avatar.png";
 </script>
 
 <template>

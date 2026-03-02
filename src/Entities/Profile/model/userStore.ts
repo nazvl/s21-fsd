@@ -2,8 +2,7 @@ import {defineStore} from "pinia";
 import {ref} from "vue";
 // import {useAuthStore} from "@/Features/auth/model/loginStore.ts";
 import {fetchData} from "@/Shared/api.ts";
-import type {User} from "@/Widgets/Profile/model/userTypes.ts";
-import {useLoaderStore} from "@/Shared/loader/model/loaderStore.ts";
+import type {User} from "@/Entities/Profile/model/userTypes.ts";
 
 
 
@@ -11,10 +10,9 @@ export const useUserStore = defineStore("UserStore", () => {
     const data = ref<User>({} as User)
     const points = ref<Record<string, number>>({} as Record<string, number>)
     const feedback = ref<Record<string, number>>({} as Record<string, number>)
-    const loader = useLoaderStore();
+
     // const authStore = useAuthStore()
     async function getData(userName = localStorage.getItem("peerName")) {
-        if(!data && !points && !feedback) loader.show()
         try {
             data.value = await fetchData(`/participants/${userName}`)
             points.value = await fetchData(`/participants/${userName}/points`)
@@ -22,7 +20,6 @@ export const useUserStore = defineStore("UserStore", () => {
         } catch (error) {
             console.error(error)
         } finally {
-            if(!data) loader.hide()
         }
     }
     return {

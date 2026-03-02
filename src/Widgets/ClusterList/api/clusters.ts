@@ -1,6 +1,6 @@
 import {fetchData} from "@/Shared/api.ts";
 import type {Cluster} from "@/Entities/Cluster/model/ClusterTypes.ts";
-import {useUserStore} from "@/Widgets/Profile/model/userStore.ts";
+import {useUserStore} from "@/Entities/Profile/model/userStore.ts";
 
 // @ts-ignore
 export async function fetchClusters(campus: string = null): Promise<Cluster[]> {
