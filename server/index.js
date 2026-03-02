@@ -1,13 +1,18 @@
 // Подключаем библиотеку express
 const express = require('express');
+const { createServer } = require('http');
 const cors = require('cors');
+const { WebSocketServer } = require('ws');
+
 // Создаем приложение
 const app = express();
+const server = createServer(app);
+
 const port = 3000;
 app.use(cors());
 app.use(express.json());               // Для JSON
 app.use(express.urlencoded({ extended: true }));
-
+const wss = new WebSocketServer({ server });
 
 app.post('/auth', async (req, res) => {
     console.log(req);
@@ -52,8 +57,20 @@ app.post('/auth', async (req, res) => {
 });
 
 
+wss.on('connection', (ws) => {
+    console.log('Новое подключение');
+
+    ws.on('message', (message) => {
+        console.log(`Получено: ${message}`);
+        // Отправка сообщения обратно клиенту
+        ws.send(`Эхо: ${message}`);
+    });
+
+    ws.send('Добро пожаловать в WebSocket!');
+});
+
 // Запускаем сервер
-app.listen(port, () => {
-    console.log(`Сервер запущен на http://localhost:${port}`);
+server.listen(3000, () => {
+    console.log('Сервер запущен на http://localhost:3000');
 });
 

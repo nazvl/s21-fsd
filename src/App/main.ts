@@ -5,6 +5,8 @@ import router from '@/App/router.ts';
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
 import { createPinia } from 'pinia'
+import {socket} from "@/App/webSocket.ts";
+
 // const ws = new WebSocket('wss://platform.21-school.ru/s21/connection/websocket');
 
 const pinia = createPinia();
@@ -17,3 +19,7 @@ app.use(PrimeVue, {
     }
 });
 app.mount('#app');
+
+socket.onopen = () => {
+    console.log('Websocket connection opened');
+}
