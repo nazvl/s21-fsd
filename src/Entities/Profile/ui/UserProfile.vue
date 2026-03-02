@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useUserStore} from "@/Entities/Profile/model/userStore.ts";
-import {onMounted} from "vue";
+import {computed, onMounted} from "vue";
 import Avatar from "@/Entities/Profile/ui/Avatar.vue";
 import CustomProgressBar from "@/Shared/CustomProgressBar.vue";
 //@ts-ignore
@@ -15,11 +15,14 @@ onMounted(async () => {
 //   const fullLevel = store.data.expValue + store.data.expToNextLevel;
 //   return ( store.data.expToNextLevel / fullLevel) * 100;
 // })
+const inCampus = computed(() => {
+  return store.workstation !== undefined
+})
 </script>
 
 <template>
   <div class="container flex flex-col gap-4 items-center justify-center p-5">
-    <Avatar class="hover:border-b-green-800 hover:shadow-green-600 hover:shadow-2xl transition"></Avatar>
+    <Avatar class="shadow-lg transition" :class="inCampus ? 'shadow-green-500' : 'shadow-gray-700'"></Avatar>
     <div class="flex flex-col gap-2 text-center">
       <p class="font-bold text-xl">{{ store.data.login }}</p>
       <p class="font-semibold">{{ store.data.parallelName }} - {{ store.data.className }}</p>
