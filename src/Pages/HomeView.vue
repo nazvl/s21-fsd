@@ -1,9 +1,10 @@
 <script setup lang="ts">
 
+import ClusterList from "@/Widgets/Clusters/ui/ClusterList.vue";
 </script>
 
 <template>
-CampusList
+<ClusterList/>
 </template>
 
 <style scoped>

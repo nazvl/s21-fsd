@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { Props} from "@/Entities/Card/model/CardTypes.ts";
+import type { Props} from "@/Shared/Card/model/CardTypes.ts";
 import {Card} from "primevue";
 const props = defineProps<Props>()
 </script>
 
 <template>
-  <Card style="width: 25rem; overflow: hidden">
+  <Card class="h-auto pr-5 bg-green-800" style="background-color: #293831">
     <template #header v-if="props.image">
       <img alt="user header" :src="props.image" />
     </template>
@@ -15,12 +15,6 @@ const props = defineProps<Props>()
       <p class="m-0">
         {{ props.content }}
       </p>
-    </template>
-    <template #footer>
-      <div class="flex gap-4 mt-1">
-        <Button label="Cancel" severity="secondary" variant="outlined" class="w-full" />
-        <Button label="Save" class="w-full" />
-      </div>
     </template>
   </Card>
 </template>

@@ -6,7 +6,7 @@ export interface User {
     "level": number,
     "expToNextLevel": number,
     "campus": {
-    "id": string,
+        "id": string,
         "shortName": string
     },
     "status": string
