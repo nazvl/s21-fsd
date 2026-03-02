@@ -9,6 +9,7 @@ const nameOfPage = computed(() => {
   if (!routeName) return ''
   switch (routeName) {
     case "": return "Home";
+    //@ts-ignore
     default: return routeName[0].toUpperCase() + routeName.slice(1);
   }
 })

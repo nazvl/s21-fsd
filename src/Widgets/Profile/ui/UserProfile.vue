@@ -3,7 +3,8 @@ import {useUserStore} from "@/Widgets/Profile/model/userStore.ts";
 import {onMounted} from "vue";
 import Avatar from "@/Widgets/Profile/ui/Avatar.vue";
 import CustomProgressBar from "@/Shared/CustomProgressBar.vue";
-import Location from "vue-material-design-icons/Map.vue"
+//@ts-ignore
+import Map from 'vue-material-design-icons/Map.vue'
 const store = useUserStore();
 
 onMounted(async () => {
@@ -44,7 +45,7 @@ onMounted(async () => {
         </div>
       </div>
       <div class="flex justify-center">
-        <Location></Location> <p>{{ store.data.campus?.shortName}}</p>
+        <Map></Map> <p>{{ store.data.campus?.shortName}}</p>
 
       </div>
     </div>
