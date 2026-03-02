@@ -1,4 +1,4 @@
-export const socket = new WebSocket('ws://localhost:3000');
+export const socket = new WebSocket(import.meta.env.VITE_SERVER);
 
 socket.onopen = () => {
     console.log('Соединение установлено');
@@ -6,5 +6,5 @@ socket.onopen = () => {
 };
 
 socket.onmessage = (event) => {
-    console.log('Сообщение от сервера:', event.data);
+    console.log('server message: ', event.data);
 };
