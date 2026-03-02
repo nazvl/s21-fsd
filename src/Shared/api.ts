@@ -16,10 +16,13 @@ export async function fetchData(route:string, data?, method: allowedMethods = 'G
                 'Authorization': `Bearer ${token}`
             }
         })
-        return await response.json();
+        return await response.json()
     } catch (e) {
-        console.error(e)
+        switch (e.code) {
+            case 401: console.error('Unauthorized'); break;
+            case 403: console.error('Access denied'); break;
+            case 404: console.error('Access denied'); break;
+            case 200:case 201: return null;
+        }
     }
-    console.log(response);
-
 }

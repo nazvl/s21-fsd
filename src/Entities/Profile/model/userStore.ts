@@ -12,6 +12,7 @@ export const useUserStore = defineStore("UserStore", () => {
     const points = ref<Record<string, number>>({} as Record<string, number>)
     const feedback = ref<Record<string, number>>({} as Record<string, number>)
     const loader = useLoaderStore()
+    const workstation = ref<Record<string, number>>({} as Record<string, number>)
     const currentUser = computed( () => {
         const name = localStorage.getItem('peerName')
         return name ? name : 'shootspi'
@@ -23,6 +24,7 @@ export const useUserStore = defineStore("UserStore", () => {
             data.value = await fetchData(`/participants/${userName}`)
             points.value = await fetchData(`/participants/${userName}/points`)
             feedback.value = await fetchData(`/participants/${userName}/feedback`)
+            workstation.value = await fetchData(`/participants/${userName}/workstation`)
         } catch (error) {
             console.error(error)
         } finally {
@@ -30,6 +32,6 @@ export const useUserStore = defineStore("UserStore", () => {
         }
     }
     return {
-        data, getData, points, feedback, currentUser
+        data, getData, points, feedback, currentUser, workstation
     }
 })
